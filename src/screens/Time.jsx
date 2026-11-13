@@ -72,8 +72,11 @@ export default function Time({ onPick, onSkip }) {
       <p className="time__hint">ปัดเพื่อเปลี่ยน แล้วแตะที่ก้อนเพื่อเลือก</p>
 
       <div className="time__ground" aria-hidden="true" />
-      <img src="/img/mooca-heart.png" alt="" className="time__mooca" aria-hidden="true" draggable="false" />
-      <img src="/icon/clock.svg" alt="" className="time__clock" aria-hidden="true" />
+      {/* mooca and the clock fill only the space left under the hint, so they shrink on short phones */}
+      <div className="time__scene" aria-hidden="true">
+        <img src="/img/mooca-heart.png" alt="" className="time__mooca" draggable="false" />
+        <img src="/icon/clock.svg" alt="" className="time__clock" />
+      </div>
     </section>
   )
 }

@@ -763,23 +763,34 @@ img {
   height: 13.5%;
   background: linear-gradient(180deg, #fbe9c6, #ede8d0);
 }
+.time__scene {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 0;
+  margin-top: 12px;
+  pointer-events: none;
+}
 .time__mooca {
   position: absolute;
   z-index: 2;
   left: 9%;
-  bottom: 6%;
-  width: 64%;
-  max-width: 260px;
+  bottom: 5%;
+  height: 92%;
+  max-height: 245px;
+  max-width: 64%;
+  object-fit: contain;
+  object-position: left bottom;
   animation: float 4.5s ease-in-out infinite;
-  pointer-events: none;
 }
 .time__clock {
   position: absolute;
   z-index: 1;
   right: 6%;
-  bottom: 21%;
-  width: 35%;
-  max-width: 140px;
+  bottom: 24%;
+  height: 52%;
+  max-height: 140px;
+  max-width: 35%;
   animation: spin-slow 30s linear infinite;
 }
 @keyframes spin-slow {
