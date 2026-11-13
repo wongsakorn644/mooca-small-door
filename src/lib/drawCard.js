@@ -181,10 +181,13 @@ export async function drawCardPng(node, card, dateText) {
   const padY = px(bStyle.paddingTop)
   ctx.font = `400 ${bSize}px ${family}`
   ctx.fillStyle = '#2354a6'
-  ctx.textAlign = 'center'
-  const bLines = ['ลองเริ่มก้าวเล็กๆ:', ...wrapText(ctx, card.step, b.w - padX * 2 + 1)]
-  bLines.forEach((t, i) => ctx.fillText(t, b.x + b.w / 2, b.y + padY + bLH * (i + 0.5)))
+  // Centre each line by measuring it: iPhone Safari ignored textAlign = 'center' here.
   ctx.textAlign = 'left'
+  const bLines = ['ลองเริ่มก้าวเล็กๆ:', ...wrapText(ctx, card.step, b.w - padX * 2 + 1)]
+  bLines.forEach((t, i) => {
+    const tw = ctx.measureText(t).width
+    ctx.fillText(t, b.x + (b.w - tw) / 2, b.y + padY + bLH * (i + 0.5))
+  })
 
   ctx.restore()
 
