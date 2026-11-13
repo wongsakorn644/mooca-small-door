@@ -286,25 +286,21 @@ function SubPicker({ holding, screenRef, onPick, onClose }) {
   )
 }
 
+// Rings around mooca: one per emotion handed over, all in the Figma gradient (#8FBBEF → #F7BBB9).
+// Stacked semi-transparent circles get deeper toward the centre, so each new ring stays visible.
 function Rings({ value }) {
   const rs = [160, 134, 110]
   return (
     <svg className="emo__rings" viewBox="0 0 340 340" aria-hidden="true">
       <defs>
-        <linearGradient id="ring-empty" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#F5C6D2" />
-          <stop offset="1" stopColor="#8FB4E8" />
+        <linearGradient id="ring-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#8FBBEF" />
+          <stop offset="1" stopColor="#F7BBB9" />
         </linearGradient>
-        {value.map((v, i) => (
-          <linearGradient key={v.id} id={`ring-${i}`} x1="0" y1="0" x2="0.4" y2="1">
-            <stop offset="0" stopColor={byId[v.id].ring[0]} />
-            <stop offset="1" stopColor={byId[v.id].ring[1]} />
-          </linearGradient>
-        ))}
       </defs>
-      {value.length === 0 && <circle cx="170" cy="170" r={rs[0]} fill="none" stroke="url(#ring-empty)" strokeWidth="1.4" />}
+      {value.length === 0 && <circle cx="170" cy="170" r={rs[0]} fill="none" stroke="url(#ring-grad)" strokeWidth="1.4" />}
       {value.map((v, i) => (
-        <circle key={v.id} className="ring" cx="170" cy="170" r={rs[i]} fill={`url(#ring-${i})`} opacity={0.3} />
+        <circle key={v.id} className="ring" cx="170" cy="170" r={rs[i]} fill="url(#ring-grad)" opacity={0.42} />
       ))}
     </svg>
   )
