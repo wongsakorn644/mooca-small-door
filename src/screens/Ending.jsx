@@ -24,7 +24,10 @@ export function Need({ onPick, onSkip }) {
         ))}
       </div>
       <div className="need__ground" aria-hidden="true" />
-      <img src="/img/mooca-stand.png" alt="มูก้ายืนรอ" className="need__mooca" draggable="false" />
+      {/* mooca fills only the space left under the buttons, so it shrinks on short phones */}
+      <div className="need__scene">
+        <img src="/img/mooca-stand.png" alt="มูก้ายืนรอ" className="need__mooca" draggable="false" />
+      </div>
     </section>
   )
 }

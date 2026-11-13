@@ -1052,13 +1052,23 @@ img {
   height: 13.5%;
   background: linear-gradient(180deg, #fbe9c6, #ede8d0);
 }
+.need__scene {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 0;
+  margin-top: 14px;
+}
 .need__mooca {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 8.5%;
-  width: 54%;
-  max-width: 212px;
+  bottom: calc(6% + env(safe-area-inset-bottom));
+  height: 90%;
+  max-height: 205px;
+  max-width: 54%;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 /* ---------- Card ---------- */
