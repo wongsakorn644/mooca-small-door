@@ -39,7 +39,7 @@ Free text is never stored or sent. It is only checked against a short keyword li
 - Drag and long-press: Pointer Events (`src/screens/Emotions.jsx`)
 - Rest visual: 2D canvas dotted sphere (`src/components/ParticleSphere.jsx`). Colours start from the chosen emotions and turn into ooca turquoise.
 - Rest sound: Web Audio API, generated in the browser (`src/lib/restAudio.js`). No audio files.
-- Card image: `html-to-image`
+- Card image: redrawn on a canvas (`src/lib/drawCard.js`) so it saves the same on iPhone Safari
 - All copy: `src/data.js`
 
 ```bash

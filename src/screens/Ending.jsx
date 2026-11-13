@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { toPng } from 'html-to-image'
+import { drawCardPng } from '../lib/drawCard.js'
 import { NEEDS, OOCA_URL, HOTLINE } from '../data.js'
 import { Header, Icon, PrimaryButton } from '../components/ui.jsx'
 
@@ -48,38 +48,18 @@ export function Card({ card, onRestart }) {
     setSaving(true)
     setSaveMsg('')
     try {
-      const node = cardRef.current
-      const url = await toPng(node, {
-        pixelRatio: 2,
-        cacheBust: true,
-        width: node.offsetWidth,
-        height: node.offsetHeight,
-        // The on-screen card is centred with auto margins and slides in with a transform;
-        // both shift the copy inside the image and crop it, so reset them for the capture.
-        // Its height also depends on the screen (max-height in %), so pin the on-screen size.
-        style: {
-          margin: '0',
-          transform: 'none',
-          animation: 'none',
-          boxShadow: 'none',
-          width: `${node.offsetWidth}px`,
-          height: `${node.offsetHeight}px`,
-          maxHeight: 'none',
-          minHeight: '0',
-          aspectRatio: 'auto',
-        },
-        filter: (n) => !(n.classList && n.classList.contains('card__download')),
-      })
+      const blob = await drawCardPng(cardRef.current, card, today())
       const name = `mooca-card-${Date.now()}.png`
-      const blob = await (await fetch(url)).blob()
       const file = new File([blob], name, { type: 'image/png' })
-      if (navigator.canShare?.({ files: [file] }) && /Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+      if (navigator.canShare?.({ files: [file] }) && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
         await navigator.share({ files: [file] }).catch(() => {})
       } else {
+        const url = URL.createObjectURL(blob)
         const a = document.createElement('a')
         a.href = url
         a.download = name
         a.click()
+        setTimeout(() => URL.revokeObjectURL(url), 10000)
       }
       setSaveMsg('เก็บการ์ดแล้ว')
     } catch {
