@@ -2,8 +2,8 @@
 
 ooca UX/UI test assignment. In about 3 minutes, the user hands what they're carrying to mooca, rests with sound and visuals generated from their feelings, and leaves with a card made from their own answers.
 
-- **Figma:** _add link_
-- **Live site:** _add link_
+- **Live site:** https://mooca-small-door.vercel.app
+- **Figma:** https://www.figma.com/design/SYG2MU4Nc36GQV7fsQryhr/OOCA-Assignment-%7C-Wongsakorn
 
 ## Flow
 
