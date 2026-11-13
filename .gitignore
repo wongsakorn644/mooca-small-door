@@ -1,0 +1,9 @@
+node_modules
+dist
+.DS_Store
+# raw Figma exports (the app uses the copies in public/)
+/design
+/Foundation
+/icon
+/mooca asset
+.claude
