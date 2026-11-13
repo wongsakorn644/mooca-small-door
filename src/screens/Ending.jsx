@@ -48,9 +48,26 @@ export function Card({ card, onRestart }) {
     setSaving(true)
     setSaveMsg('')
     try {
-      const url = await toPng(cardRef.current, {
+      const node = cardRef.current
+      const url = await toPng(node, {
         pixelRatio: 2,
         cacheBust: true,
+        width: node.offsetWidth,
+        height: node.offsetHeight,
+        // The on-screen card is centred with auto margins and slides in with a transform;
+        // both shift the copy inside the image and crop it, so reset them for the capture.
+        // Its height also depends on the screen (max-height in %), so pin the on-screen size.
+        style: {
+          margin: '0',
+          transform: 'none',
+          animation: 'none',
+          boxShadow: 'none',
+          width: `${node.offsetWidth}px`,
+          height: `${node.offsetHeight}px`,
+          maxHeight: 'none',
+          minHeight: '0',
+          aspectRatio: 'auto',
+        },
         filter: (n) => !(n.classList && n.classList.contains('card__download')),
       })
       const name = `mooca-card-${Date.now()}.png`
