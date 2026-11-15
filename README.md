@@ -1,4 +1,4 @@
-# ฝากไว้กับมูก้า — A Small Mental Health Experience
+# ฝากไว้กับมูก้า — A Little Pause with Mooca
 
 ooca UX/UI test assignment. In about 3 minutes, the user hands what they're carrying to mooca, rests with sound and visuals generated from their feelings, and leaves with a card made from their own answers.
 
