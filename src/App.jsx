@@ -96,9 +96,10 @@ export default function App() {
         {step === 'emotions' && (
           <Emotions
             value={s.emotions}
+            told={s.told}
             onChange={(emotions) => set({ emotions })}
             onNext={afterEmotions}
-            onSkip={() => (s.emotions.length ? afterEmotions() : goRestOnly())}
+            onSkip={() => (s.emotions.length || s.told ? afterEmotions() : goRestOnly())}
             onTell={() => setStep('tell')}
           />
         )}
@@ -111,10 +112,10 @@ export default function App() {
                 setStep('care')
                 return
               }
-              if (!text && !s.emotions.length) return setStep('emotions')
-              set({ told: !!text })
-              if (s.emotions.length && !onlyUnknown) setStep('time')
-              else setStep('reflect')
+              // Telling is a side step: go back to the emotion screen, which can now continue
+              // even if no capsule was picked.
+              if (text) set({ told: true })
+              setStep('emotions')
             }}
           />
         )}

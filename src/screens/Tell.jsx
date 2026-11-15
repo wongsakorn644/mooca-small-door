@@ -49,7 +49,7 @@ export default function Tell({ onSubmit, onSkip }) {
           </span>
         </div>
         <PrimaryButton className="tell__next" onClick={submit}>
-          ถัดไป
+          กลับไปหน้าเลือกอารมณ์
         </PrimaryButton>
       </div>
     </section>

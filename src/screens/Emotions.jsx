@@ -9,7 +9,7 @@ const SUB_TINTS = ['#D6DDEE', '#DDF0D2', '#FCE7C2']
 
 // Step 2 — hand emotions to mooca: drag a capsule up into mooca, or tap it.
 // Long-press a capsule to pick a more specific feeling. Tap a used capsule to take it back.
-export default function Emotions({ value, onChange, onNext, onSkip, onTell }) {
+export default function Emotions({ value, told, onChange, onNext, onSkip, onTell }) {
   const screenRef = useRef(null)
   const dropRef = useRef(null)
   const press = useRef(null)
@@ -210,10 +210,10 @@ export default function Emotions({ value, onChange, onNext, onSkip, onTell }) {
         </div>
 
         <button type="button" className="link emo__tell" onClick={onTell}>
-          เราอยากเล่าให้ฟังเอง
+          {told ? 'เล่าให้มูก้าฟังแล้ว ✓ เล่าเพิ่มได้นะ' : 'เราอยากเล่าให้ฟังเอง'}
         </button>
-        <div className={`emo__next ${value.length ? 'is-in' : ''}`}>
-          <PrimaryButton onClick={onNext} tabIndex={value.length ? 0 : -1}>
+        <div className={`emo__next ${value.length || told ? 'is-in' : ''}`}>
+          <PrimaryButton onClick={onNext} tabIndex={value.length || told ? 0 : -1}>
             ถัดไป
           </PrimaryButton>
         </div>
